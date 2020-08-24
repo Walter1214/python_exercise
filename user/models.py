@@ -4,9 +4,9 @@ from django.utils import timezone
 
 
 class Account(models.Model):
-    name = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255)
     email = models.EmailField(blank=True)
-    password = models.CharField(max_length=255, blank=True)
+    password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
