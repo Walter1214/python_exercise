@@ -11,7 +11,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self
+        return self.email
 
 
 class Account(models.Model):
@@ -23,4 +23,4 @@ class Account(models.Model):
     ordering = ['created_at']
 
     def __str__(self):
-        return self
+        return self.name

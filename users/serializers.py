@@ -5,7 +5,6 @@ from users.models import Account as UsersAccountModel
 class AccountSerializer(serializers.Serializer):
     name = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
-    tracks = serializers.StringRelatedField()
 
     def create(self, validated_data):
         print(validated_data)
