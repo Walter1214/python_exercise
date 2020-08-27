@@ -17,10 +17,13 @@ class UsersAccount(APIView):
 
     def post(self, request):
         requestData = request.data
+        # try:
         serializer = UserAccountSerializer(data=requestData)
-        test = UsersAccountModel.objects.filter(name=requestData['name'])
-        print('####', test)
-        print('$$$$$', serializer)
+        exitAccount = UsersAccountModel.objects.filter(
+            name=requestData['name'])
+        print('$$$$4', exitAccount)
+        # except expression as identifier:
+        #     pass
         # if serializer.is_valid():
         #     serializer.save()
 

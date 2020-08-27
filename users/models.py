@@ -15,6 +15,7 @@ class Profile(models.Model):
 
 
 class Account(models.Model):
+    Profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=True)
     password = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
