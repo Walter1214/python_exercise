@@ -3,6 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+from tutorial.utils.exceptions import AccountRepeat as AccountRepeatException, ValidateFail, Common as CommonException
+from rest_framework.exceptions import APIException
+from tutorial.constants.message import Success as MessageSuccess
+
 from users.serializers import AccountSerializer as UserAccountSerializer
 from users.models import Account as UsersAccountModel
 
@@ -16,16 +20,22 @@ class UsersAccount(APIView):
         return Response()
 
     def post(self, request):
+
         requestData = request.data
-        # try:
-        serializer = UserAccountSerializer(data=requestData)
         exitAccount = UsersAccountModel.objects.filter(
             name=requestData['name'])
-        print('$$$$4', exitAccount)
-        # except expression as identifier:
-        #     pass
-        # if serializer.is_valid():
-        #     serializer.save()
+        if exitAccount:
+            raise AccountRepeatException()
+        serializer = UserAccountSerializer(data=requestData)
+        print('%%%%', serializer)
 
-        # return Response(serializer.data)
-        return Response()
+        if serializer.is_valid():
+            try:
+                serializer.save()
+            except Exception as e:
+                raise CommonException(
+                    {'code': 9999, 'message': 'internal error'})
+        else:
+            raise ValidateFail()
+
+        return Response(MessageSuccess)
