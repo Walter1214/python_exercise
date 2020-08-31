@@ -8,4 +8,6 @@ python manage.py runserver
 python manage.py makemigrations snippets
 python manage.py migrate
 
+pip install -r requirement.txt
+
 pip freeze > requirements.txt
