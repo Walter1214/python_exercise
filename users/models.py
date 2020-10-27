@@ -1,7 +1,7 @@
 from django.db import models
 # Create your models here.
 from django.utils import timezone
-
+# from blog.models import LanguageList
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=255, blank=True)
